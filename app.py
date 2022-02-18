@@ -56,45 +56,43 @@ def mariposaGrove():
     return temp
 
 
-# @app.route(BASE_ROUTE + "/DayToDay", methods=['POST'])
-# def dayToday():
-#     e = Event(order=1, event="GET THERE SAFTLY")
-#
-#     d2d = DaytoDay(trip="Yosemite",
-#                    dayOne=[{"order": e.order,
-#                             "event": e.event}],
-#                    dayTwo=[{"order": e.order,
-#                             "event": e.event}],
-#                    dayThree=[{"order": e.order,
-#                             "event": e.event}],
-#                    dayFour=[{"order": e.order,
-#                             "event": e.event}],
-#                    dayFive=[{"order": e.order,
-#                             "event": e.event}])
-#
-#     table = dynamodb.Table(d2d.Meta.table_name)
-#
-#     response = table.put_item(
-#         Item={
-#             "trip": d2d.trip,
-#             "dayOne": d2d.dayOne,
-#             "dayTwo": d2d.dayOne,
-#             "dayThree": d2d.dayOne,
-#             "dayFour": d2d.dayOne,
-#             "dayFive": d2d.dayOne,
-#         }
-#     )
-#     print(d2d.dayOne)
-#     print(response)
-#     return jsonify({"Message": "Successfully added",
-#                     "response": response}), 201
+@app.route(BASE_ROUTE + "/DayToDay", methods=['POST'])
+def dayToday():
+    e = Event(order=1, event="GET THERE SAFTLY")
+
+    d2d = DaytoDay(trip="Yosemite",
+                   dayOne=[{"order": e.order,
+                            "event": e.event}],
+                   dayTwo=[{"order": e.order,
+                            "event": e.event}],
+                   dayThree=[{"order": e.order,
+                            "event": e.event}],
+                   dayFour=[{"order": e.order,
+                            "event": e.event}],
+                   dayFive=[{"order": e.order,
+                            "event": e.event}])
+
+    table = dynamodb.Table(d2d.Meta.table_name)
+
+    response = table.put_item(
+        Item={
+            "trip": d2d.trip,
+            "dayOne": d2d.dayOne,
+            "dayTwo": d2d.dayOne,
+            "dayThree": d2d.dayOne,
+            "dayFour": d2d.dayOne,
+            "dayFive": d2d.dayOne,
+        }
+    )
+    print(d2d.dayOne)
+    print(response)
+    return jsonify({"Message": "Successfully added",
+                    "response": response}), 201
 
 
 @app.route(BASE_ROUTE + "/DayToDay", methods=['GET', 'PUT'])
 def AddEvent():
     data = request.json
-
-
 
     table = dynamodb.Table("DayToDay")
     try:
