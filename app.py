@@ -66,11 +66,11 @@ def dayToday():
                    dayTwo=[{"order": e.order,
                             "event": e.event}],
                    dayThree=[{"order": e.order,
-                            "event": e.event}],
+                              "event": e.event}],
                    dayFour=[{"order": e.order,
-                            "event": e.event}],
+                             "event": e.event}],
                    dayFive=[{"order": e.order,
-                            "event": e.event}])
+                             "event": e.event}])
 
     table = dynamodb.Table(d2d.Meta.table_name)
 
@@ -90,6 +90,11 @@ def dayToday():
                     "response": response}), 201
 
 
+@app.route(BASE_ROUTE + "/test", methods=['GET', 'PUT', 'POST'])
+def AddEvent():
+    return jsonify({"test": "test was successful"})
+
+
 @app.route(BASE_ROUTE + "/DayToDay", methods=['GET', 'PUT'])
 def AddEvent():
     data = request.json
@@ -106,9 +111,9 @@ def AddEvent():
         print(len(i))
 
         newEvent = {
-        "order": len(response["Item"][data["day"]]) + 1,
-        "event": data["message"]
-    }
+            "order": len(response["Item"][data["day"]]) + 1,
+            "event": data["message"]
+        }
         hereitis = table.update_item(
             Key={
                 'trip': "Yosemite",
