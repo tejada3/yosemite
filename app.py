@@ -91,7 +91,7 @@ def dayToday():
 
 
 @app.route(BASE_ROUTE + "/test", methods=['GET', 'PUT', 'POST'])
-def AddEvent():
+def test():
     return jsonify({"test": "test was successful"})
 
 
