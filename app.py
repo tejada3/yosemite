@@ -13,7 +13,7 @@ app = Flask(__name__)
 api = Api(app)
 cors = CORS(app, resources={r"/*": {"origins": "*"}})
 BASE_ROUTE = "/weather"
-dynamodb = boto3.resource('dynamodb')
+dynamodb = boto3.resource('dynamodb',  region_name='us-east-1')
 
 
 def print_hi(url):
